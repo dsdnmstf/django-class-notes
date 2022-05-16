@@ -1,0 +1,9 @@
+{%extends "fscohort/base.html"%}
+{%block container%}
+<form action="" method="POST">
+    {%csrf_token%}
+    <p>Are youe sure to delete {{student}}</p>
+    <input type="submit" value="Yes">  
+</form>
+  <a href="{% url 'detail' student.id %}"><button>No</button></a>
+{%endblock container%}
