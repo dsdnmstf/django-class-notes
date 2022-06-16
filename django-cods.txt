@@ -1,0 +1,66 @@
+$ python --version  # check python version
+$ pip --version  # check pip version
+
+$ py -m pip install  # install pip
+$ python -m pip install --upgrade pip  # optional -- upgrade pip version
+
+
+$ py -m venv env  # create virtual env
+$ .\env\Scripts\activate  # activate virtual env on powershell
+$ env\Scripts\activate  # activate virtual env on cmd
+
+
+$ pip install django  # install django
+$ pip freeze  # control installed package
+$ pip freeze > requirements.txt  # create requirements.txt (project required packages) for downloding github users etc.
+
+$ django-admin startproject main # create a project (enter the folder: cd main!!!)
+$ django-admin startproject main . # create a project (no entering folder)
+
+$ py manage.py startapp app # create an app
+
+$ py manage.py makemigrations
+$ py manage.py migrate
+
+$ py manage.py createsuperuser
+
+$ py manage.py runserver # start the project
+
+$ pip install -r requirements.txt  # install packages in requirements.txt (when using other people's projects)
+
+$Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+FOR STATIC FILES
+from django.conf import settings
+from django.conf.urls.static import static
+
++ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+import os
+
+#Static Files Settings
+STATIC_URL = '/static/'
+STATIC_ROOT = [BASE_DIR,   'static-files']
+
+#Uploaded_files Settings
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+
+
+
+
+# Add users with auth
+
+We want to allow adding regular users to our app.
+
+- Go to authenticate/urls.py and add:
+```py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    ### And using some urls which Django give us about authentication:
+    path('accounts/', include('django.contrib.auth.urls'))
+]
